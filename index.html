@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street Food Finder - Discover Local Delicacies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+        <p id="loadingText">Loading...</p>
+    </div>
+
+    <div class="header">
+        <h1>🍴 Street Bites Hub</h1>
+        <div id="userLocation"><i class="fas fa-map-marker-alt"></i> Detecting your location...</div>
+    </div>
+
+    <div class="filters">
+        <div>
+            <label>Cuisine:</label>
+            <select id="cuisineFilter" class="form-control">
+                <option value="all">All Cuisines</option>
+                <option value="Gujarati">Gujarati</option>
+                <option value="South Indian">South Indian</option>
+                <!-- <option value="Street Food">Street Food</option> -->
+                <option value="Snacks">Snacks</option>
+            </select>
+        </div>
+        <div>
+            <label>Veg Only:</label>
+            <input type="checkbox" id="vegFilter">
+        </div>
+        <div>
+            <label>Sort By:</label>
+            <select id="sortFilter" class="form-control">
+                <option value="name">Name (A-Z)</option>
+                <option value="distance">Distance (Nearest First)</option>
+            </select>
+        </div>
+        <div>
+            <button onclick="findOptimalRoute()"><i class="fas fa-route"></i> Find Best Route</button>
+            <button class="secondary" onclick="clearRoute()"><i class="fas fa-times"></i> Clear Route</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="sidebar">
+            <div id="vendorList"></div>
+            <div class="review-section">
+                <h3><i class="fas fa-comments"></i> Customer Reviews</h3>
+                <div id="reviewsContainer">
+                    <p>Reviews are stored locally in your browser</p>
+                </div>
+                <h4><i class="fas fa-edit"></i> Add Your Review</h4>
+                <form id="reviewForm">
+                    <input type="text" id="userName" class="form-control" placeholder="Your name" required>
+                    <textarea id="reviewText" class="form-control" placeholder="Share your experience..." required></textarea>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <div>
+                            <label>Rating:</label>
+                            <select id="reviewRating" class="form-control" required>
+                                <option value="">Select rating</option>
+                                <option value="5">★★★★★</option>
+                                <option value="4">★★★★☆</option>
+                                <option value="3">★★★☆☆</option>
+                                <option value="2">★★☆☆☆</option>
+                                <option value="1">★☆☆☆☆</option>
+                            </select>
+                        </div>
+                        <button type="submit" style="flex: 1;"><i class="fas fa-paper-plane"></i> Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="index.js"></script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrH5NshHIouMWSZdN22PgUHSn0K_8rdlg&callback=initMap&map_ids=da37f3254c6a6d1c">
+    </script>
+</body>
+</html>
